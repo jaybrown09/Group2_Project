@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+nul
+desktop.ini
+
+# Temporary files
+tempCodeRunnerFile.py
+*.tmp
+*.bak
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Database files (uncomment if you don't want to share these)
+# *.db
+# *.sqlite
+# *.sqlite3
+
+# Log files
+*.log
+
+# Environment variables
+.env
+.env.local
