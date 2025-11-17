@@ -13,7 +13,7 @@ This app allows users to organize and manage recipes. It allows users to add new
 
 1. **Clone this repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/Group2_Project.git
+   git clone https://github.com/jaybrown09/Group2_Project.git
    cd Group2_Project
    ```
 
