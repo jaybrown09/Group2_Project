@@ -113,20 +113,27 @@ button.st-emotion-cache-1anq8dj:hover {
     border-color: rgba(239, 68, 68, 0.4) !important;
 }
 
-/* Radio Button */
-[data-testid="stRadio"] * {
+/* Radio Button - minimal styling, let Streamlit handle the rest */
+/* Only style the text color, not the circles */
+[data-testid="stRadio"] p {
     color: #ea580c !important;
 }
 
-/* Radio button circle - unselected */
-.st-bw {
-    background-color: white !important;
-    border: 2px solid #94a3b8 !important;
+/* Override dark backgrounds but preserve the radio input visibility */
+[data-testid="stRadio"] div[class*="st-"]:not([data-testid]) {
+    background-color: transparent !important;
 }
 
-/* Target radio circle div when it has the hover class */
-[data-testid="stRadio"] label div[class*="st-cj"][class*="st-au"] {
-    background-color: #ea580c !important;
+/* Make the actual radio input visible and styled */
+[data-testid="stRadio"] input[type="radio"] {
+    appearance: auto !important;
+    -webkit-appearance: auto !important;
+    -moz-appearance: auto !important;
+    width: 16px !important;
+    height: 16px !important;
+    accent-color: #ea580c !important;
+    opacity: 1 !important;
+    position: relative !important;
 }
 
 /* Toggle button */
@@ -304,7 +311,6 @@ div.st-en {
 /* Expander styling */
 .streamlit-expanderHeader {
     background: rgba(255, 255, 255, 0.9) !important;
-    color: #0f172a !important;
     border: 1px solid rgba(148, 163, 184, 0.3) !important;
     border-radius: 12px !important;
 }
@@ -314,49 +320,22 @@ div.st-en {
     border-color: rgba(100, 116, 139, 0.4) !important;
 }
 
-/* Fix for black background when expanded */
-[data-testid="stExpander"] details[open] summary {
-    background: rgba(255, 255, 255, 0.9) !important;
-    color: #0f172a !important;
+[data-testid="stExpander"] {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(148, 163, 184, 0.3) !important;
+    border-radius: 12px !important;
 }
 
-[data-baseweb="popover"],
-[data-baseweb="menu"],
-[role="listbox"],
-[role="option"],
-div[class*="dropdown"],
-ul[class*="menu"] {
-    background: white !important;
-    color: #0f172a !important;
-}
-
-/* Dropdown hover/highlight color */
-[data-baseweb="menu"] [role="option"]:hover,
-[role="option"]:hover,
-li:hover[role="option"],
-div[role="option"]:hover {
-    background: rgba(247, 124, 9, 0.936) !important;
-    color: #0f172a !important;
-}
-
-/* Metric label styling */
-[data-testid="stMetricLabel"] {
+/* Expander arrow/icon */
+.streamlit-expanderHeader svg,
+[data-testid="stExpander"] summary svg {
     color: #64748b !important;
-    font-weight: 600 !important;
-}
-
-/* Metric value styling */
-[data-testid="stMetricValue"] {
-    color: #ea580c !important;
-    font-weight: 700 !important;
 }
 
 /* Expander content area */
-.streamlit-expanderContent {
+[data-testid="stExpander"] [data-testid="stExpanderDetails"] {
     background: rgba(255, 255, 255, 0.95) !important;
-    border: 1px solid rgba(148, 163, 184, 0.3) !important;
-    border-top: none !important;
-    color: #0f172a !important;
+    border-top: 1px solid rgba(148, 163, 184, 0.2) !important;
 }
 
 /* Expander text/label */
