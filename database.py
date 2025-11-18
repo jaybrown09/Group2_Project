@@ -514,6 +514,46 @@ def delete_recipe(recipe_id):
 
     return "Recipe Successfully Deleted"
 
+def delete_user_recipe(recipe_id, user_id=None):
+    """
+    Delete a recipe from the database.
+    If user_id is provided, only delete if the recipe belongs to that user.
+    Returns success message or error dict.
+    """
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    try:
+        # If user_id is provided, verify ownership before deleting
+        if user_id is not None:
+            cursor.execute("""
+                SELECT recipe_id FROM recipes
+                WHERE recipe_id = ? AND user_id = ?
+            """, (recipe_id, user_id))
+            
+            if cursor.fetchone() is None:
+                conn.close()
+                return {"error": "Recipe not found or you don't have permission to delete it"}
+        
+        # Delete the recipe (CASCADE will handle related tables)
+        cursor.execute("""
+            DELETE FROM recipes
+            WHERE recipe_id = ?
+        """, (recipe_id,))
+        
+        if cursor.rowcount == 0:
+            conn.close()
+            return {"error": "Recipe not found"}
+        
+        conn.commit()
+        conn.close()
+        
+        return "Recipe Successfully Deleted"
+        
+    except Exception as e:
+        conn.close()
+        return {"error": f"Failed to delete recipe: {str(e)}"}
+
 def get_all_public_recipes():
     conn = get_db_connection()
     cursor = conn.cursor()
