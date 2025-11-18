@@ -40,3 +40,14 @@ tempCodeRunnerFile.py
 # Environment variables
 .env
 .env.local
+
+# Prevent devcontainer from being committed
+.devcontainer/
+.devcontainer.json
+
+# VS Code settings
+.vscode/
+
+# Other IDE files
+.idea/
+*.code-workspace
