@@ -218,7 +218,7 @@ with col_create:
             result = db.create_recipe(
                 user_id=st.session_state.user_id,
                 title=recipe_title.strip(),
-                ingredients=st.session_state.new_recipe_ingredients,  # Pass list of dicts
+                ingredients=st.session_state.new_recipe_ingredients,
                 instructions=instructions.strip(),
                 image_path=image_path,
                 is_public=is_public

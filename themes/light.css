@@ -1,470 +1,186 @@
-/* === LIGHT THEME === */
+/* === LIGHT THEME (WARM) === */
 
-/* Force background on multiple Streamlit containers */ 
+/* Force background on multiple Streamlit containers */
 .stApp,
 [data-testid="stAppViewContainer"],
-[data-testid="stMain"] {
-    background: #f8fafc !important;
-    color: #0f172a !important;
+[data-testid="stMain"],
+.main,
+.main > div {
+    background: linear-gradient(135deg, #fef3e2 0%, #fce7c8 50%, #fef3e2 100%) !important;
+    color: #2c1810 !important;
 }
 
 /* Card-like containers */
 .settings-section {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(148, 163, 184, 0.3);
+    border: 1px solid rgba(139, 92, 46, 0.15);
     border-radius: 20px;
     padding: 2rem;
     margin: 1.5rem 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-/* Fix Padding Color */
-[data-baseweb="input"],
-[data-baseweb="base-input"],
-[data-baseweb="input"] > div,
-div[role="presentation"][class*="st-"] {
-    background: rgba(255, 255, 255, 1.0) !important;
-}
-
-input {
-  box-shadow: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
 }
 
 /* Titles and labels */
-.section-title { color: #0f172a; font-weight: 700; font-size: 1.5rem; }
-.section-description { color: #475569; }
+.section-title { color: #2c1810; font-weight: 700; font-size: 1.5rem; }
+.section-description { color: #8b5e3c; }
 
-.profile-label { color: #64748b; }
-.profile-value { color: #1e293b; }
+.profile-label { color: #8b5e3c; }
+.profile-value { color: #2c1810; }
 
-label { color: #334155 !important; font-weight: 600; }
+label { color: #4a2c1a !important; font-weight: 600; }
 
-/* Checkbox labels */
-.stCheckbox * {
-    color: #0f172a !important;
-}
+.stat-number { color: #d97706; }
+.stat-label { color: #8b5e3c; }
 
-.stat-number { color: #ea580c; }
-.stat-label { color: #64748b; }
+.info-box { background: rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.3); color:#1d4ed8; }
+.warning-box { background: rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3); color:#b91c1c; }
+.success-box { background: rgba(22,163,74,0.12); border:1px solid rgba(22,163,74,0.3); color:#15803d; }
 
-.info-box { background: rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.25); color:#1e40af; }
-.warning-box { background: rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.25); color:#b91c1c; }
-.success-box { background: rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); color:#15803d; }
-
-/* Placeholder text */
-.stTextInput > div > div > input::placeholder,
-.stTextArea > div > div > textarea::placeholder {
-    color: #101010 !important;
-    opacity: 1 !important;
-}
-
-/* Buttons */
-.stButton > button {
-    background: rgba(255, 255, 255, 0.9) !important;
-    color: #0f172a !important;
-    border: 1px solid rgba(148, 163, 184, 0.3) !important;
+/* ========== BUTTON FIXES ========== */
+/* Base button styling - multiple selectors for maximum coverage */
+.stButton > button,
+.stButton button,
+button[data-testid="baseButton-secondary"],
+button[data-testid="baseButton-minimal"],
+[data-testid="stButton"] > button,
+div[data-testid="column"] .stButton > button,
+.element-container .stButton > button {
+    background: rgba(139, 92, 46, 0.08) !important;
+    color: #2c1810 !important;
+    border: 1px solid rgba(139, 92, 46, 0.2) !important;
     border-radius: 12px !important;
     font-weight: 600 !important;
     transition: all 0.2s ease !important;
 }
 
-.stButton > button:hover {
-    background: rgba(226, 232, 240, 0.95) !important;
-    border-color: rgba(100, 116, 139, 0.4) !important;
+.stButton > button:hover,
+.stButton button:hover,
+button[data-testid="baseButton-secondary"]:hover,
+button[data-testid="baseButton-minimal"]:hover,
+[data-testid="stButton"] > button:hover,
+div[data-testid="column"] .stButton > button:hover {
+    background: rgba(139, 92, 46, 0.15) !important;
+    border-color: rgba(139, 92, 46, 0.3) !important;
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 8px rgba(44, 24, 16, 0.15) !important;
 }
 
-.stButton > button[kind="primary"] {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+/* Primary buttons (Add to Plan, etc.) */
+.stButton > button[kind="primary"],
+button[data-testid="baseButton-primary"],
+[data-testid="stButton"] > button[kind="primary"] {
+    background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%) !important;
     color: white !important;
-    border: 1px solid rgba(59, 130, 246, 0.4) !important;
+    border: 1px solid rgba(234, 88, 12, 0.4) !important;
 }
 
-.stButton > button[kind="primary"]:hover {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
-    border-color: rgba(37, 99, 235, 0.5) !important;
+.stButton > button[kind="primary"]:hover,
+button[data-testid="baseButton-primary"]:hover {
+    background: linear-gradient(135deg, #c2410c 0%, #9a3412 100%) !important;
+    border-color: rgba(194, 65, 12, 0.5) !important;
 }
 
-.stButton > button[kind="secondary"] {
-    background: rgba(239, 68, 68, 0.1) !important;
-    color: #dc2626 !important;
-    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+/* Secondary/danger buttons */
+.stButton > button[kind="secondary"],
+button[data-testid="baseButton-secondary"] {
+    background: rgba(220, 38, 38, 0.12) !important;
+    color: #b91c1c !important;
+    border: 1px solid rgba(220, 38, 38, 0.3) !important;
 }
 
-.stButton > button[kind="secondary"]:hover {
-    background: rgba(239, 68, 68, 0.2) !important;
-    border-color: rgba(239, 68, 68, 0.4) !important;
+.stButton > button[kind="secondary"]:hover,
+button[data-testid="baseButton-secondary"]:hover {
+    background: rgba(220, 38, 38, 0.2) !important;
+    border-color: rgba(220, 38, 38, 0.4) !important;
 }
 
-/* Force secondary button styling on all buttons with that class */
-button.st-emotion-cache-1anq8dj {
-    background: rgba(239, 68, 68, 0.1) !important;
-    color: #dc2626 !important;
-    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+/* Override any Streamlit default background on buttons */
+.stButton > button[style*="background"],
+button[class*="st-emotion-cache"] {
+    background: rgba(139, 92, 46, 0.08) !important;
 }
 
-button.st-emotion-cache-1anq8dj:hover {
-    background: rgba(239, 68, 68, 0.2) !important;
-    border-color: rgba(239, 68, 68, 0.4) !important;
+/* Ensure emoji/icon buttons are visible */
+.stButton > button:has(span),
+.stButton > button:has(p) {
+    background: rgba(139, 92, 46, 0.08) !important;
+    color: #2c1810 !important;
 }
 
-/* Radio Button - minimal styling, let Streamlit handle the rest */
-/* Only style the text color, not the circles */
-[data-testid="stRadio"] p {
-    color: #ea580c !important;
+/* Number input +/- buttons - applies to ALL pages */
+.stNumberInput button {
+    background: rgba(252, 231, 200, 1.0) !important;
+    color: #8b5e3c !important;
 }
 
-/* Override dark backgrounds but preserve the radio input visibility */
-[data-testid="stRadio"] div[class*="st-"]:not([data-testid]) {
-    background-color: transparent !important;
+.stNumberInput button:hover {
+    background: rgba(251, 207, 153, 0.5) !important;
+    color: #2c1810 !important;
 }
 
-/* Make the actual radio input visible and styled */
-[data-testid="stRadio"] input[type="radio"] {
-    appearance: auto !important;
-    -webkit-appearance: auto !important;
-    -moz-appearance: auto !important;
-    width: 16px !important;
-    height: 16px !important;
-    accent-color: #ea580c !important;
-    opacity: 1 !important;
-    position: relative !important;
-}
-
-/* Toggle button */
-
-/* Knob Color */
-div.st-en {
-    background-color: #6a6e7c !important;
-}
-
-/* Toggle label text */
-[data-testid="stToggle"] label {
-    color: #0f172a !important;
-}
-
-/* File uploader container */
-[data-testid="stFileUploader"] {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border: 2px dashed rgba(148, 163, 184, 0.4) !important;
-    border-radius: 12px !important;
-    padding: 1rem !important;
-}
-
-/* File uploader label text */
-[data-testid="stFileUploader"] label {
-    color: #334155 !important;
-    font-weight: 600 !important;
-}
-
-/* File uploader helper text */
-[data-testid="stFileUploader"] .stMarkdown small {
-    color: #64748b !important;
-}
-
-/* Browse files button */
-[data-testid="stFileUploader"] button {
+/* MultiSelect Padding */
+[data-testid="stMultiSelect"] > div > div {
     background: rgba(255, 255, 255, 0.9) !important;
-    color: #0f172a !important;
-    border: 1px solid rgba(148, 163, 184, 0.3) !important;
-    border-radius: 12px !important;
-    font-weight: 600 !important;
 }
 
-[data-testid="stFileUploader"] button:hover {
-    background: rgba(226, 232, 240, 0.95) !important;
-    border-color: rgba(100, 116, 139, 0.4) !important;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* Drag and drop zone */
-[data-testid="stFileUploaderDropzone"] {
+/* Fix Padding Color - matching dark mode approach */
+[data-baseweb="input"],
+[data-baseweb="base-input"],
+[data-baseweb="input"] > div,
+div[role="presentation"][class*="st-"] {
     background: rgba(255, 255, 255, 0.9) !important;
-    color: #0f172a !important;
 }
 
-/* File size limit and format text */
-[data-testid="stFileUploader"] small {
-    color: #0f172a !important;
+/* Selectbox specific fixes */
+.stSelectbox > div > div > div {
+    background: rgba(255, 255, 255, 0.9) !important;
 }
 
-/* Uploaded file name */
-[data-testid="stFileUploader"] [data-testid="stMarkdownContainer"] {
-    color: #0f172a !important;
+/* The select container itself */
+.stSelectbox [data-baseweb="select"] > div {
+    background: rgba(255, 255, 255, 0.9) !important;
 }
 
-/* Drag and drop file here text */
-.st-emotion-cache-ysg2um {
-    color: #0f172a !important;
-}
-
-/* Limit 200MB per file • PNG, JPG, JPEG text */
-.st-emotion-cache-15cv43h {
-    color: #0f172a !important;
+/* Selectbox dropdown arrow icon - ensure visibility */
+.stSelectbox svg path,
+.stSelectbox svg[data-baseweb="icon"] path {
+    fill: #2c1810 !important;
 }
 
 /* Input fields */
 .stTextInput > div > div > input,
 .stSelectbox > div > div > div,
 .stTextArea > div > div > textarea {
-    background: rgba(255, 255, 255, 1.0) !important;
-    color: #0f172a !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #2c1810 !important;
 }
 
 .stTextInput > div > div > input:focus,
 .stSelectbox > div > div > div:focus,
 .stTextArea > div > div > textarea:focus {
-    border-color: rgba(59, 130, 246, 0.5) !important;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
-}
-
-/* Number input - main input field */
-.stNumberInput input[type="number"] {
-    background: rgba(255, 255, 255, 0.9) !important;
-    color: #0f172a !important;
-}
-
-.stNumberInput input[type="number"]:focus {
-    border-color: rgba(59, 130, 246, 0.5) !important;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
-}
-
-/* Date input - main input field */
-.stDateInput input[type="text"] {
-    background: rgba(255, 255, 255, 0.9) !important;
-    color: #0f172a !important;
-}
-
-/* Date input container wrapper - fixes gray padding */
-.stDateInput > div,
-.stDateInput > div > div,
-.stDateInput [data-baseweb="input"] {
-    background: white !important;
-    background-color: white !important;
-}
-
-/* Also target the base-input wrapper specifically */
-.stDateInput [data-baseweb="base-input"] {
-    background-color: white !important;
-}
-
-/* Number input +/- buttons */
-.stNumberInput button {
-    background: white !important;
-    color: #475569 !important;
-}
-
-.stNumberInput button:hover {
-    background: rgba(100, 116, 139, 0.25) !important;
-    color: #1e293b !important;
-}
-
-/* Selectbox dropdown menu */
-.stSelectbox [data-baseweb="popover"] {
-    background: white !important;
-}
-
-.stSelectbox [data-baseweb="select"] [data-baseweb="popover"] {
-    background: white !important;
-}
-
-/* Selectbox dropdown arrow icon */
-.stSelectbox svg path,
-.stSelectbox svg[data-baseweb="icon"] path {
-    fill: #0f172a !important;
-}
-
-/* The actual dropdown list container */
-.stSelectbox [data-baseweb="menu"] {
-    background: white !important;
-}
-
-/* Individual dropdown items */
-.stSelectbox [data-baseweb="menu"] li {
-    background: white !important;
-    color: #0f172a !important;
-}
-
-/* Dropdown items on hover */
-.stSelectbox [data-baseweb="menu"] li:hover {
-    background: rgba(59, 130, 246, 0.1) !important;
-    color: #0f172a !important;
-}
-
-/* The ul element inside the menu */
-.stSelectbox ul[role="listbox"] {
-    background: white !important;
-}
-
-/* Individual options */
-.stSelectbox li[role="option"] {
-    background: white !important;
-    color: #0f172a !important;
-}
-
-/* Expander styling */
-.streamlit-expanderHeader {
-    background: rgba(255, 255, 255, 0.9) !important;
-    border: 1px solid rgba(148, 163, 184, 0.3) !important;
-    border-radius: 12px !important;
-}
-
-.streamlit-expanderHeader:hover {
-    background: rgba(226, 232, 240, 0.95) !important;
-    border-color: rgba(100, 116, 139, 0.4) !important;
-}
-
-[data-testid="stExpander"] {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border: 1px solid rgba(148, 163, 184, 0.3) !important;
-    border-radius: 12px !important;
-}
-
-/* Expander arrow/icon */
-.streamlit-expanderHeader svg,
-[data-testid="stExpander"] summary svg {
-    color: #64748b !important;
-}
-
-/* Expander content area */
-[data-testid="stExpander"] [data-testid="stExpanderDetails"] {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border-top: 1px solid rgba(148, 163, 184, 0.2) !important;
-}
-
-/* Expander text/label */
-.streamlit-expanderHeader p,
-[data-testid="stExpander"] summary p {
-    color: #0f172a !important;
-    font-weight: 600 !important;
-}
-
-/* Date picker calendar popup */
-[data-baseweb="calendar"] {
-    background: white !important;
-}
-
-/* Calendar popup container */
-[data-baseweb="popover"] [data-baseweb="calendar"],
-div[data-baseweb="calendar"] {
-    background: white !important;
-}
-
-/* Calendar header row containing navigation buttons */
-[data-baseweb="calendar"] div:has(> button[aria-label*="month"]) {
-    background: white !important;
-    background-color: white !important;
-}
-
-/* Calendar header month/year text */
-[data-baseweb="calendar"] button[aria-haspopup="true"] {
-    color: #0f172a !important;
-}
-
-/* Target calendar weekday headers by alt attribute */
-[data-baseweb="calendar"] div[alt] {
-    color: #0f172a !important;
-    background: white !important;
-}
-
-/* Month/Year dropdown buttons */
-[data-baseweb="calendar"] header [data-baseweb="select"],
-[data-baseweb="calendar"] header [data-baseweb="select"] > div {
-    color: #0f172a !important;
-}
-
-/* Calendar month/year dropdowns */
-[data-baseweb="select"] [role="button"] {
-    background: rgba(255, 255, 255, 0.9) !important;
-    color: #0f172a !important;
-}
-
-/* Days of week header row */
-[data-baseweb="calendar"] [role="row"]:first-child,
-[data-baseweb="calendar"] [role="columnheader"] {
-    background: white !important;
-    color: #0f172a !important;
-}
-
-/* Day cells */
-[data-baseweb="calendar"] [role="gridcell"] {
-    color: #0f172a !important;
-}
-
-/* Selected day */
-[data-baseweb="calendar"] [aria-selected="true"] {
-    background: #3b82f6 !important;
-    color: white !important;
-}
-
-/* Today's date */
-[data-baseweb="calendar"] [data-highlighted="true"] {
-    background: rgba(59, 130, 246, 0.1) !important;
-}
-
-/* Dates from other months (greyed out dates) */
-[data-baseweb="calendar"] [aria-disabled="true"] {
-    color: #94a3b8 !important;
-    background: transparent !important;
-}
-
-/* Fix empty calendar filler cells (the black rectangles) */
-[data-baseweb="calendar"] [role="gridcell"]:empty,
-[data-baseweb="calendar"] [role="row"] > div:empty,
-[data-baseweb="calendar"] [role="row"] > div:not([role]) {
-    background: white !important;
-    background-color: white !important;
-}
-
-/* Also catch any divs in the calendar grid that aren't buttons */
-[data-baseweb="calendar"] [role="row"] > div:not(:has(button)) {
-    background: white !important;
-}
-
-/* Override the dark background on disabled calendar dates */
-[data-baseweb="calendar"] .st-g2::after {
-    background-color: white !important;
-}
-
-/* Also target it more generally in case it appears elsewhere */
-.st-g2::after {
-    background-color: white !important;
-}
-
-/* SVG icon color override */
-.st-dd {
-    color: rgb(15, 23, 42) !important;
-}
-
-.day-number-label {
-    color: #888 !important;
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2) !important;
 }
 
 /* Pantry card styling */
 .pantry-card {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(148, 163, 184, 0.3);
+    border: 1px solid rgba(139, 92, 46, 0.15);
     border-radius: 16px;
     padding: 1.5rem;
     margin-bottom: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px rgba(44, 24, 16, 0.1);
     transition: all 0.2s ease;
 }
 
 .pantry-card:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 12px rgba(44, 24, 16, 0.15);
     transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.85);
 }
 
 .item-name {
-    color: #0f172a;
+    color: #2c1810;
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -472,26 +188,9 @@ div[data-baseweb="calendar"] {
 
 .item-quantity,
 .item-date {
-    color: #64748b;
+    color: #8b5e3c;
     font-size: 0.95rem;
     margin: 0.25rem 0;
-}
-
-/* Meal card styling */
-.meal-card.Breakfast .meal-recipe-title {
-    color: #FF9800 !important;
-}
-
-.meal-card.Lunch .meal-recipe-title {
-    color: #2196F3 !important;
-}
-
-.meal-card.Dinner .meal-recipe-title {
-    color: #9C27B0 !important;
-}
-
-.meal-card.Snack .meal-recipe-title {
-    color: #4CAF50 !important;
 }
 
 /* Status badges */
@@ -505,33 +204,33 @@ div[data-baseweb="calendar"] {
 }
 
 .status-expired {
-    background: rgba(239, 68, 68, 0.15);
-    color: #dc2626;
-    border: 1px solid rgba(239, 68, 68, 0.3);
+    background: rgba(220, 38, 38, 0.15);
+    color: #b91c1c;
+    border: 1px solid rgba(220, 38, 38, 0.3);
 }
 
 .status-expiring {
-    background: rgba(251, 191, 36, 0.15);
-    color: #d97706;
-    border: 1px solid rgba(251, 191, 36, 0.3);
+    background: rgba(217, 119, 6, 0.15);
+    color: #b45309;
+    border: 1px solid rgba(217, 119, 6, 0.3);
 }
 
 .status-low {
     background: rgba(59, 130, 246, 0.15);
-    color: #2563eb;
+    color: #1d4ed8;
     border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 .status-good {
-    background: rgba(34, 197, 94, 0.15);
-    color: #16a34a;
-    border: 1px solid rgba(34, 197, 94, 0.3);
+    background: rgba(22, 163, 74, 0.15);
+    color: #15803d;
+    border: 1px solid rgba(22, 163, 74, 0.3);
 }
 
 /* Dividers */
 .settings-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 46, 0.2), transparent);
     margin: 2rem 0;
 }
 
@@ -544,8 +243,8 @@ div[data-baseweb="calendar"] {
 }
 
 .stat-card {
-    background: rgba(59, 130, 246, 0.05);
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    background: rgba(234, 88, 12, 0.08);
+    border: 1px solid rgba(234, 88, 12, 0.2);
     border-radius: 12px;
     padding: 1.5rem;
     text-align: center;
@@ -560,67 +259,116 @@ div[data-baseweb="calendar"] {
     display: flex;
     justify-content: space-between;
     padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    border-bottom: 1px solid rgba(139, 92, 46, 0.15);
 }
 
 .profile-row:last-child {
     border-bottom: none;
 }
 
-/* Tab styling for light mode */
-/* Unselected tab text - black */
-.stTabs [data-baseweb="tab-list"] button {
-    color: #0f172a !important;
-}
-
-/* Selected tab text - orange */
-.stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {
-    color: #ea580c !important;
-}
-
-/* Hover state - orange */
-.stTabs [data-baseweb="tab-list"] button:hover {
-    color: #ea580c !important;
-}
-
-/* Tab underline/highlight for selected tab */
-.stTabs [data-baseweb="tab-highlight"] {
-    background-color: #ea580c !important;
-}
-
-/* Tab border bottom */
-.stTabs [data-baseweb="tab-border"] {
-    background-color: rgba(148, 163, 184, 0.3) !important;
-}
-
-/* Fix selectbox selected value background */
-.stSelectbox [data-baseweb="select"] > div {
-    background: rgba(255, 255, 255, 1.0) !important;
-}
-
-/* Remove any highlight/selection background on the value container */
-.stSelectbox [data-baseweb="select"] [data-baseweb="tag"] {
+/* Remove any leftover Streamlit background tint */
+[data-testid="stAppViewContainer"] {
     background: transparent !important;
 }
 
-/* Target the actual selected value text container */
-.stSelectbox div[data-baseweb="select"] div[class*="valueContainer"] {
-    background: white !important;
+/* Calendar/Meal Plan specific styles */
+.week-display {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c1810;
+    padding: 0.5rem;
 }
 
-/* Override any gray backgrounds in the selectbox */
-.stSelectbox div[class*="-control"],
-.stSelectbox div[class*="singleValue"] {
-    background: white !important;
-    background-color: white !important;
+.day-card {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(139, 92, 46, 0.15);
+    border-radius: 12px;
+    padding: 1rem;
+    min-height: 200px;
 }
 
-/* Target warning text specifically */
-.stAlert p,
-.stAlert div,
-[data-testid="stAlert"] p,
-[data-testid="stAlert"] div {
-    color: black !important;
+.day-card.today {
+    border-color: #ea580c;
+    background: rgba(234, 88, 12, 0.08);
+}
+
+.day-header {
+    color: #8b5e3c;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.day-date {
+    color: #2c1810;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.meal-entry {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.meal-type {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.meal-type.Breakfast { color: #d97706; }
+.meal-type.Lunch { color: #059669; }
+.meal-type.Dinner { color: #dc2626; }
+.meal-type.Snack { color: #7c3aed; }
+
+.meal-title {
+    color: #2c1810;
+    font-size: 0.9rem;
+}
+
+.empty-day {
+    color: #a16f47;
+    font-size: 0.85rem;
+    font-style: italic;
+    padding: 1rem 0;
+}
+
+.date-title {
+    color: #2c1810;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.list-view-container {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(139, 92, 46, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+/* Remove border/outline for preferences form submit button */
+[data-testid="stFormSubmitButton"],
+[data-testid="stFormSubmitButton"] button {
+    border: none !important;
+    border-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Form submit highlight */
+[data-testid="stFormSubmitButton"] button:hover {
+    filter: brightness(0.92) !important;
+}
+
+/* Hide click enter text */
+div[data-testid="InputInstructions"] {
+    display: none;
 }
 
 /* Caret color in text boxes */
@@ -633,11 +381,5 @@ input[type="url"],
 input[type="tel"],
 input[type="number"],
 input:not([type]) {
-    caret-color: #ea580c !important;
-}
-
-/* Checkbox checkmark color when hovered */
-.stCheckbox [data-baseweb="checkbox"] span:first-child:hover {
-    background-color: #ea580c !important;
-    border-color: #ea580c !important;
+    caret-color: #2c1810 !important;
 }

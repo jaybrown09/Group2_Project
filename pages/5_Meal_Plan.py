@@ -56,25 +56,29 @@ with st.expander("➕ Add Meal to Plan", expanded=False):
                 selected_recipe_name = st.selectbox("Recipe*", options=list(recipe_options.keys()))
             
             with col2:
-                meal_date = st.date_input("Date*", value=datetime.now().date())
+                meal_date_str = st.text_input("Date* (YYYY-MM-DD)", value=datetime.now().strftime("%Y-%m-%d"), placeholder="YYYY-MM-DD")
             
             with col3:
                 meal_type = st.selectbox("Meal Type*", options=["Breakfast", "Lunch", "Dinner", "Snack"])
             
             if st.form_submit_button("➕ Add to Plan", type="primary", use_container_width=True):
-                selected_recipe_id = recipe_options[selected_recipe_name]
-                result = db.create_meal_plan(
-                    user_id=st.session_state.user_id,
-                    date=meal_date.strftime('%Y-%m-%d'),
-                    recipe_id=selected_recipe_id,
-                    meal_type=meal_type
-                )
-                
-                if isinstance(result, dict) and 'error' in result:
-                    st.error(f"❌ {result['error']}")
-                else:
-                    st.success(f"✅ Added {selected_recipe_name} to {meal_type} on {meal_date}!")
-                    st.rerun()
+                try:
+                    meal_date = datetime.strptime(meal_date_str, "%Y-%m-%d").date()
+                    selected_recipe_id = recipe_options[selected_recipe_name]
+                    result = db.create_meal_plan(
+                        user_id=st.session_state.user_id,
+                        date=meal_date.strftime('%Y-%m-%d'),
+                        recipe_id=selected_recipe_id,
+                        meal_type=meal_type
+                    )
+                    
+                    if isinstance(result, dict) and 'error' in result:
+                        st.error(f"❌ {result['error']}")
+                    else:
+                        st.success(f"✅ Added {selected_recipe_name} to {meal_type} on {meal_date}!")
+                        st.rerun()
+                except ValueError:
+                    st.error("Invalid date format. Please use YYYY-MM-DD")
     
     st.markdown('</div>', unsafe_allow_html=True)
 

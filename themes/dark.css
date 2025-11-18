@@ -123,7 +123,7 @@ button[class*="st-emotion-cache"] {
     background: rgba(30, 41, 59, 1.0) !important;
 }
 
-/* Fix Padding Color - matching light mode approach */
+/* Fix Padding Color */
 [data-baseweb="input"],
 [data-baseweb="base-input"],
 [data-baseweb="input"] > div,
@@ -382,4 +382,261 @@ input[type="tel"],
 input[type="number"],
 input:not([type]) {
     caret-color: #f8fafc !important;
+}
+
+/* Toolbar Styling */
+[data-testid="stToolbar"],
+.stApp header[data-testid="stHeader"],
+header[data-testid="stHeader"] {
+    background: rgba(15, 23, 42, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+/* Toolbar buttons */
+[data-testid="stToolbar"] button,
+header[data-testid="stHeader"] button {
+    color: #f8fafc !important;
+}
+
+[data-testid="stToolbar"] button:hover,
+header[data-testid="stHeader"] button:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Sidebar Styling */
+[data-testid="stSidebar"],
+[data-testid="stSidebarContent"],
+section[data-testid="stSidebar"] {
+    background: rgba(15, 23, 42, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+/* Sidebar background overlay */
+[data-testid="stSidebar"] > div:first-child {
+    background: rgba(15, 23, 42, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+/* Sidebar text - Make it light/readable */
+[data-testid="stSidebar"] *,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+    color: #f8fafc !important;
+}
+
+/* Sidebar links/buttons */
+[data-testid="stSidebar"] button,
+[data-testid="stSidebar"] a {
+    color: #f8fafc !important;
+}
+
+[data-testid="stSidebar"] button:hover,
+[data-testid="stSidebar"] a:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Sidebar collapse button */
+[data-testid="collapsedControl"],
+button[data-testid="collapsedControl"] {
+    background: rgba(15, 23, 42, 0.95) !important;
+    backdrop-filter: blur(10px);
+    color: #f8fafc !important;
+}
+
+[data-testid="collapsedControl"]:hover,
+button[data-testid="collapsedControl"]:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Target the Material Icon specifically */
+[data-testid="collapsedControl"] span[data-testid="stIconMaterial"],
+button[data-testid="collapsedControl"] span[data-testid="stIconMaterial"],
+span[data-testid="stIconMaterial"],
+[data-testid="stIconMaterial"][color] {
+    color: #f8fafc !important;
+    fill: #f8fafc !important;
+}
+
+/* Also target any other child elements */
+[data-testid="collapsedControl"] *,
+button[data-testid="collapsedControl"] * {
+    color: #f8fafc !important;
+    fill: #f8fafc !important;
+}
+
+/* Tab styling */
+[data-testid="stTab"] {
+    color: #f8fafc !important;
+    font-weight: 600 !important;
+}
+
+/* Selected/active tab */
+[data-testid="stTab"][aria-selected="true"] {
+    color: #3b82f6 !important;
+    border-bottom: 2px solid #3b82f6 !important;
+}
+
+/* Tab hover state */
+[data-testid="stTab"]:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #f8fafc !important;
+}
+
+/* Tab text container */
+[data-testid="stTab"] [data-testid="stMarkdownContainer"] p {
+    color: inherit !important;
+    margin: 0 !important;
+}
+
+/* Expander styling - prevent white background when expanded */
+[data-testid="stExpander"],
+details[data-testid="stExpander"],
+.streamlit-expanderHeader,
+[data-testid="stExpanderDetails"] {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Expander header (the clickable part) */
+[data-testid="stExpander"] summary,
+details[data-testid="stExpander"] summary,
+.streamlit-expanderHeader {
+    background: rgba(30, 41, 59, 0.6) !important;
+    color: #f8fafc !important;
+    border-radius: 12px !important;
+}
+
+/* Expander header on hover */
+[data-testid="stExpander"] summary:hover,
+details[data-testid="stExpander"] summary:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Expander content area when expanded */
+[data-testid="stExpander"][open],
+details[data-testid="stExpander"][open] {
+    background: rgba(30, 41, 59, 0.6) !important;
+}
+
+/* Expander details content */
+[data-testid="stExpanderDetails"],
+details[data-testid="stExpander"] > div {
+    background: transparent !important;
+}
+
+/* Keep expander icon visible */
+[data-testid="stExpander"] svg,
+details[data-testid="stExpander"] svg {
+    color: #f8fafc !important;
+    fill: #f8fafc !important;
+}
+
+/* Number Input color */
+input[type="number"] {
+  color: #f8fafc;
+}
+
+/* Checkbox text color*/
+.stCheckbox p {
+  color: #f8fafc !important;
+}
+
+/* Radio button label color */
+.stRadio p {
+  color: #f8fafc !important;
+}
+
+/* Metric value color */
+[data-testid="stMetricValue"] {
+    color: #f8fafc !important;
+}
+
+/* Dropdown Color */
+[role="option"] {
+        color: #f8fafc !important;
+        background-color: rgba(30, 41, 59, 1.0) !important;
+    }
+
+[role="option"]:hover {
+    background-color: #3b82f6 !important;
+}
+
+/* File Uploader Background */
+[data-testid="stFileUploaderDropzone"] {
+    background-color: rgba(30, 41, 59, 1.0) !important;
+}
+
+/* File Uploader Instruction Color */
+[data-testid="stFileUploaderDropzoneInstructions"] span {
+    color: #f8fafc !important;
+}
+
+/* Target the upload button */
+[data-testid="stFileUploader"] button {
+    color: #f8fafc !important;
+    background-color: rgba(30, 41, 59, 1.0) !important;
+}
+
+/* Date input - all states */
+input[type="date"],
+.stDateInput input,
+[data-baseweb="input"] input[type="date"],
+div[data-testid="stDateInput"] input {
+    color: #f8fafc !important;
+    -webkit-text-fill-color: #f8fafc !important;
+    background: rgba(30, 41, 59, 1.0) !important;
+}
+
+/* Date input wrapper */
+.stDateInput > div > div,
+[data-testid="stDateInput"] > div > div {
+    background: rgba(30, 41, 59, 1.0) !important;
+}
+
+/* Calendar icon */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(1.5);
+    cursor: pointer;
+}
+
+/* Calendar Coloring */
+[role="grid"] {
+        color: #f8fafc !important;
+        background-color: rgba(30, 41, 59, 1.0) !important;
+    }
+
+[role="gridcell"] {
+        color: #f8fafc !important;
+        background-color: rgba(30, 41, 59, 1.0) !important;
+    }
+
+/* Target all divs inside calendar */
+[data-baseweb="calendar"] {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+}
+    
+[data-baseweb="calendar"] button {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+}
+    
+[data-baseweb="calendar"] [aria-selected="true"] {
+    background-color: #3b82f6 !important;
+}
+
+[data-baseweb="calendar"] div {
+        background-color: #1e293b !important;
+    }
+
+/* Keep only red circle on selected date */
+[data-baseweb="calendar"] [aria-selected="true"]::before {
+    background-color: #1e293b !important;
+}
+    
+[data-baseweb="calendar"] [aria-selected="true"]::after {
+    background-color: #1e293b !important;
+    border: 2px solid #ef4444 !important;
 }

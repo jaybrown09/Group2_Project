@@ -662,6 +662,39 @@ def is_recipe_saved(user_id, recipe_id):
     
     return result is not None
 
+def get_recipe_ingredients(recipe_id, target_units=None):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("""
+        SELECT ingredient_id, quantity, unit, name, order_index
+        FROM recipe_ingredients
+        WHERE recipe_id = ?
+        ORDER BY order_index
+    """, (recipe_id,))
+    
+    rows = cursor.fetchall()
+    conn.close()
+    
+    ingredients = []
+    for row in rows:
+        quantity = row[1]
+        unit = row[2]
+        
+        # Convert units if target system specified
+        if target_units and quantity is not None:
+            quantity, unit = convert_unit(quantity, unit, target_units)
+        
+        ingredients.append({
+            'ingredient_id': row[0],
+            'quantity': quantity,
+            'unit': unit,
+            'name': row[3],
+            'order_index': row[4]
+        })
+    
+    return ingredients
+
 #pantry functions
 def create_pantry_item(user_id, name, quantity, unit, expiration_date, low_threshold):
     if not name or not name.strip():

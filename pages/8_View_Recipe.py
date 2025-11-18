@@ -58,7 +58,7 @@ st.markdown('<div class="recipe-card">', unsafe_allow_html=True)
 # Title + Status
 st.markdown(f'<div class="recipe-title">{recipe["title"]}</div>', unsafe_allow_html=True)
 status_class = "status-public" if recipe['is_public'] else "status-private"
-status_text = "🌐: Public" if recipe['is_public'] else "Lock: Private"
+status_text = "🌐: Public" if recipe['is_public'] else "🔒: Private"
 st.markdown(f'<span class="status-badge {status_class}">{status_text}</span>', unsafe_allow_html=True)
 
 # Metadata

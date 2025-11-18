@@ -41,23 +41,31 @@ with st.expander("Add New Pantry Item", expanded=False):
             qty = st.number_input("Quantity*", min_value=0.0, step=0.1, value=1.0)
             unit = st.text_input("Unit")
         with c2:
-            exp = st.date_input("Expiration Date*", value=datetime.now().date() + timedelta(days=30))
-            low = st.number_input("Low Stock Alert", min_value=0.0, step=0.1, value=1.0)
+            exp_str = st.text_input(
+            "Expiration Date* (YYYY-MM-DD)", 
+            value=(datetime.now() + timedelta(days=30)).strftime("%Y-%m-%d"),
+            placeholder="YYYY-MM-DD"
+        )
+        low = st.number_input("Low Stock Alert", min_value=0.0, step=0.1, value=1.0)
         
         if st.form_submit_button("Add Item", type="primary", use_container_width=True):
             if not name.strip():
                 st.error("Name is required")
             else:
-                db.create_pantry_item(
-                    user_id=st.session_state.user_id,
-                    name=name.strip(),
-                    quantity=qty,
-                    unit=unit.strip() or None,
-                    expiration_date=exp.strftime("%Y-%m-%d"),
-                    low_threshold=low
-                )
-                st.success("Item added!")
-                st.rerun()
+                try:
+                    exp_date = datetime.strptime(exp_str, "%Y-%m-%d").date()
+                    db.create_pantry_item(
+                        user_id=st.session_state.user_id,
+                        name=name.strip(),
+                        quantity=qty,
+                        unit=unit.strip() or None,
+                        expiration_date=exp_date.strftime("%Y-%m-%d"),
+                        low_threshold=low
+                    )
+                    st.success("Item added!")
+                    st.rerun()
+                except ValueError:
+                    st.error("Invalid date format. Please use YYYY-MM-DD")
     st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("---")
