@@ -1,6 +1,6 @@
 import sqlite3
 import json
-from datetime import datetime
+from datetime import datetime, date
 import os
 import bcrypt
 
@@ -591,18 +591,21 @@ def get_random_public_recipe():
     conn = get_db_connection()
     cursor = conn.cursor()
     
+    # Get today's date as a seed
+    today = date.today()
+    seed = int(today.strftime('%Y%m%d'))
+    
     cursor.execute("""
         SELECT r.recipe_id, r.user_id, r.title, r.ingredients, r.instructions, 
                r.image_path, r.is_public, r.created_at, u.username
         FROM recipes r
         JOIN users u ON r.user_id = u.user_id
         WHERE r.is_public = 1
-        ORDER BY RANDOM()
+        ORDER BY (r.recipe_id * ?) % 1000000
         LIMIT 1
-    """)
+    """, (seed,))
     
     row = cursor.fetchone()
-    
     conn.close()
     
     if row is None:
