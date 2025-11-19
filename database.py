@@ -473,31 +473,56 @@ def get_user_cookbook(user_id):
     
     return recipes
 
-def update_recipe(recipe_id, title, ingredients, instructions, image_path, is_public):
-    conn = get_db_connection()
-    cursor = conn.cursor()
-
-    # Handle both string and list formats for ingredients
-    if isinstance(ingredients, list):
-        ingredients_json = json.dumps(ingredients)
-    else:
-        ingredients_json = ingredients
-
-    cursor.execute("""
-        UPDATE recipes
-        SET title = ?, 
-            ingredients = ?, 
-            instructions = ?, 
-            image_path = ?, 
-            is_public = ?
-        WHERE recipe_id = ?
-    """, (title, ingredients_json, instructions, image_path, is_public, recipe_id))
-
-    conn.commit()
-
-    conn.close()
-
-    return recipe_id
+def update_user_recipes(recipe_id, title, ingredients, instructions, image_path, is_public):
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Handle both string and list formats for ingredients
+        if isinstance(ingredients, list):
+            # New structured format - convert to JSON string for storage in recipes table
+            ingredients_json = json.dumps(ingredients)
+        else:
+            # Legacy string format
+            ingredients_json = ingredients
+        
+        # Update the recipe in recipes table
+        cursor.execute("""
+            UPDATE recipes
+            SET title = ?, 
+                ingredients = ?, 
+                instructions = ?, 
+                image_path = ?, 
+                is_public = ?
+            WHERE recipe_id = ?
+        """, (title, ingredients_json, instructions, image_path, is_public, recipe_id))
+        
+        # If ingredients is a structured list, also update the recipe_ingredients table
+        if isinstance(ingredients, list):
+            # Delete existing structured ingredients
+            cursor.execute("""
+                DELETE FROM recipe_ingredients 
+                WHERE recipe_id = ?
+            """, (recipe_id,))
+            
+            # Insert new structured ingredients
+            for idx, ing in enumerate(ingredients):
+                cursor.execute("""
+                    INSERT INTO recipe_ingredients (recipe_id, quantity, unit, name, order_index)
+                    VALUES (?, ?, ?, ?, ?)
+                """, (recipe_id, ing.get('quantity'), ing.get('unit'), ing.get('name'), idx))
+        
+        conn.commit()
+        conn.close()
+        
+        return recipe_id
+        
+    except Exception as e:
+        print(f"Error updating recipe: {e}")
+        if 'conn' in locals():
+            conn.rollback()
+            conn.close()
+        return None
 
 def delete_recipe(recipe_id):
     conn = get_db_connection()
