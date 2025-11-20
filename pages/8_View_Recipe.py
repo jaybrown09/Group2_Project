@@ -227,13 +227,13 @@ else:
         with col1:
             if is_saved:
                 if st.button("❌ Remove from Cookbook", use_container_width=True, type="secondary"):
-                    db.unsave_recipe_from_cookbook(st.session_state.user_id, recipe['recipe_id'])
+                    db.unsave_public_recipe(st.session_state.user_id, recipe['recipe_id'])
                     st.success("✅ Recipe removed from your cookbook!")
                     import time; time.sleep(1)
                     st.rerun()
             else:
                 if st.button("📥 Save to My Cookbook", use_container_width=True, type="primary"):
-                    result = db.save_recipe_to_cookbook(st.session_state.user_id, recipe['recipe_id'])
+                    result = db.save_public_recipe(st.session_state.user_id, recipe['recipe_id'])
                     if result:
                         st.success("✅ Recipe saved to your cookbook!")
                         st.balloons()
