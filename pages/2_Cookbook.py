@@ -207,7 +207,7 @@ with tab3:
                                     st.switch_page("pages/8_View_Recipe.py")
                             with btn_col2:
                                 if st.button("💾 Save", key=f"save_{recipe['recipe_id']}", use_container_width=True):
-                                    result = db.save_recipe_to_cookbook(st.session_state.user_id, recipe['recipe_id'])
+                                    result = db.save_public_recipe(st.session_state.user_id, recipe['recipe_id'])
                                     if result:
                                         st.success("✅ Recipe saved to your cookbook!")
                                         st.rerun()
