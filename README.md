@@ -1,13 +1,13 @@
 # Group2 Project - Streamlit Application
 
 ## Description
-This app allows users to organize and manage recipes. It allows users to add new recipes, view other user’s public recipes, derive new recipes from existing recipes, set up shopping lists, create daily meal plans, and track current pantry inventory.
+This app allows users to organize and manage recipes. It allows users to add new recipes, view and save other user’s public recipes, set up shopping lists, create daily meal plans, and track current pantry inventory.
 
 ## Setup Instructions
 
 ### Prerequisites
 - Python 3.8 or higher
-- pip (Python package installer)
+- pip 
 
 ### Installation
 
@@ -17,7 +17,7 @@ This app allows users to organize and manage recipes. It allows users to add new
    cd Group2_Project
    ```
 
-2. **Create a virtual environment** (recommended)
+2. **Create a virtual environment** 
    ```bash
    # Windows
    python -m venv venv
@@ -48,7 +48,6 @@ Group2_Project/
 ├── theme_manager.py        # Theme/styling management
 ├── requirements.txt        # Python dependencies
 ├── pages/                  # Additional Streamlit pages
-├── data/                   # Data files
 └── themes/                 # Theme configurations
 ```
 
