@@ -26,4 +26,5 @@ tempCodeRunnerFile.py
 *.tmp
 *.bak
 
-
+# User data - do not commit
+data/
