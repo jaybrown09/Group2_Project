@@ -28,7 +28,7 @@ if not recipe:
     if st.button("🏠: Go to Dashboard"): st.switch_page("pages/1_Dashboard.py")
     st.stop()
 
-creator = db.get_username(recipe['user_id'])
+creator = db.get_user(recipe['user_id'])
 creator_name = creator['username'] if creator else f"User {recipe['user_id']}"
 
 # Get structured ingredients
