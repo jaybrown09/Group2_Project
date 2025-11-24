@@ -540,16 +540,11 @@ def delete_recipe(recipe_id):
     return "Recipe Successfully Deleted"
 
 def delete_user_recipe(recipe_id, user_id=None):
-    """
-    Delete a recipe from the database.
-    If user_id is provided, only delete if the recipe belongs to that user.
-    Returns success message or error dict.
-    """
     conn = get_db_connection()
     cursor = conn.cursor()
     
     try:
-        # If user_id is provided, verify ownership before deleting
+        # Verify ownership before deleting
         if user_id is not None:
             cursor.execute("""
                 SELECT recipe_id FROM recipes

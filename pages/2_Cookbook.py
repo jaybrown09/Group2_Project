@@ -113,9 +113,14 @@ with tab1:
             col_yes, col_no = st.columns(2)
             with col_yes:
                 if st.button("🗑️ Yes, Delete Forever", type="primary", use_container_width=True):
-                    db.delete_user_recipe(st.session_state.delete_recipe_id, st.session_state.user_id)
+                    result = db.delete_user_recipe(st.session_state.delete_recipe_id, st.session_state.user_id)
                     del st.session_state.delete_recipe_id
-                    st.success("Recipe deleted successfully!")
+                    
+                    if isinstance(result, dict) and "error" in result:
+                        st.error(result["error"])
+                    else:
+                        st.success("Recipe deleted successfully!")
+                    
                     st.rerun()
             with col_no:
                 if st.button("❌ Cancel", use_container_width=True):
