@@ -187,6 +187,75 @@ for i, step in enumerate(recipe['instructions'].split('\n'), 1):
         st.markdown(f'<div class="instruction-step"><span class="step-num">Step {i}:</span> {step.strip()}</div>', unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
+# Add this section after the INSTRUCTIONS section and before the BUTTONS section
+
+# === ADD TO SHOPPING LIST ===
+st.markdown("---")
+st.markdown('<h2 class="section-header">🛒 Add to Shopping List</h2>', unsafe_allow_html=True)
+
+if structured_ingredients:
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        st.info("Select ingredients to add to your shopping list")
+    with col2:
+        if st.button("➕ Add Selected Items", use_container_width=True, type="primary", key="add_to_list"):
+            added_count = 0
+            for idx, ing in enumerate(structured_ingredients):
+                if st.session_state.get(f"select_ing_{idx}", False):
+                    if isinstance(ing, dict):
+                        qty = ing.get('quantity')
+                        unit = ing.get('unit')
+                        name = ing.get('name', '')
+                        
+                        # Apply conversion if in converted mode
+                        if qty and unit and st.session_state.unit_display_mode is not None:
+                            qty, unit = db.convert_unit(qty, unit, to_system=st.session_state.unit_display_mode)
+                        
+                        result = db.create_shopping_list_item(
+                            st.session_state.user_id,
+                            name,
+                            qty,
+                            unit,
+                            False  # Not checked by default
+                        )
+                        
+                        if not isinstance(result, dict) or "error" not in result:
+                            added_count += 1
+            
+            if added_count > 0:
+                st.success(f"✅ Added {added_count} item(s) to your shopping list!")
+                st.balloons()
+                import time
+                time.sleep(1)
+                st.rerun()
+            else:
+                st.warning("⚠️ No items selected or error adding items")
+    
+    # Display ingredients with checkboxes
+    st.markdown('<div class="ingredients-box">', unsafe_allow_html=True)
+    for idx, ing in enumerate(structured_ingredients):
+        if isinstance(ing, dict):
+            qty = ing.get('quantity')
+            unit = ing.get('unit')
+            name = ing.get('name', '')
+            
+            # Apply conversion based on display mode
+            if qty and unit and st.session_state.unit_display_mode is not None:
+                converted_qty, converted_unit = db.convert_unit(qty, unit, to_system=st.session_state.unit_display_mode)
+                formatted_qty = f"{converted_qty:.2f}".rstrip("0").rstrip(".")
+                display_text = f"{formatted_qty} {converted_unit} {name}"
+            elif qty:
+                formatted_qty = f"{qty:.2f}".rstrip("0").rstrip(".")
+                unit_str = unit or ""
+                display_text = f"{formatted_qty} {unit_str} {name}".strip()
+            else:
+                display_text = name
+            
+            st.checkbox(display_text, key=f"select_ing_{idx}")
+    st.markdown('</div>', unsafe_allow_html=True)
+else:
+    st.info("This recipe doesn't have structured ingredients. Please edit the recipe to enable shopping list integration.")
+
 # === BUTTONS ===
 if recipe['user_id'] == st.session_state.user_id:
     st.markdown("---")
