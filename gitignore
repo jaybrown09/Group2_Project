@@ -26,28 +26,5 @@ tempCodeRunnerFile.py
 *.tmp
 *.bak
 
-# Streamlit
-.streamlit/secrets.toml
-
-# Database files (uncomment if you don't want to share these)
-# *.db
-# *.sqlite
-# *.sqlite3
-
-# Log files
-*.log
-
-# Environment variables
-.env
-.env.local
-
-# Prevent devcontainer from being committed
-.devcontainer/
-.devcontainer.json
-
-# VS Code settings
-.vscode/
-
-# Other IDE files
-.idea/
-*.code-workspace
+# User data - do not commit
+data/
