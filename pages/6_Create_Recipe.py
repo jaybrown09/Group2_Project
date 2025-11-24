@@ -167,26 +167,13 @@ with st.container():
 
 # Action Buttons
 st.markdown("---")
-col_cancel, col_preview, col_create = st.columns([1, 1, 1])
+col_cancel, col_create = st.columns([1, 1])
 
 with col_cancel:
     if st.button("❌ Cancel", use_container_width=True):
         # Clear ingredients on cancel
         st.session_state.new_recipe_ingredients = []
         st.switch_page("pages/2_Cookbook.py")
-
-with col_preview:
-    if st.button("👁️ Preview", use_container_width=True):
-        if recipe_title and st.session_state.new_recipe_ingredients and instructions:
-            st.session_state.preview_recipe = {
-                'title': recipe_title,
-                'ingredients': st.session_state.new_recipe_ingredients,
-                'instructions': instructions,
-                'is_public': is_public
-            }
-            st.rerun()
-        else:
-            st.error("Please fill in all required fields to preview (title, at least one ingredient, and instructions)")
 
 with col_create:
     if st.button("✔ Create Recipe", use_container_width=True, type="primary"):
@@ -231,50 +218,9 @@ with col_create:
                 st.balloons()
                 # Clear the ingredients list and form
                 st.session_state.new_recipe_ingredients = []
-                st.session_state.pop('preview_recipe', None)
                 import time
                 time.sleep(1)
                 st.switch_page("pages/2_Cookbook.py")
-
-# Preview Modal
-if 'preview_recipe' in st.session_state:
-    st.markdown("---")
-    st.subheader("👁️ Recipe Preview")
-    
-    # Title
-    st.markdown(f"## {st.session_state.preview_recipe['title']}")
-    
-    # Privacy status
-    if st.session_state.preview_recipe['is_public']:
-        st.markdown("**Status:** 🌍 Public")
-    else:
-        st.markdown("**Status:** 🔒 Private")
-    
-    st.markdown("---")
-    
-    # Ingredients
-    st.markdown("### 🥦 Ingredients")
-    for ing in st.session_state.preview_recipe['ingredients']:
-        if ing['quantity']:
-            qty_str = f"{ing['quantity']:.2f}".rstrip("0").rstrip(".")
-            unit_str = ing['unit'] or ""
-            display = f"- {qty_str} {unit_str} {ing['name']}".strip()
-        else:
-            display = f"- {ing['name']}"
-        st.markdown(display)
-    
-    st.markdown("---")
-    
-    # Instructions
-    st.markdown("### 📋 Instructions")
-    instructions_list = st.session_state.preview_recipe['instructions'].split('\n')
-    for i, instruction in enumerate(instructions_list, 1):
-        if instruction.strip():
-            st.markdown(f"{i}. {instruction.strip()}")
-    
-    if st.button("Close Preview"):
-        del st.session_state.preview_recipe
-        st.rerun()
 
 # Footer
 st.markdown("---")
