@@ -74,6 +74,7 @@ st.markdown(f"""
     <div class="meta-item"><span class="meta-label">Created:</span> {created}</div>
     <div class="meta-item"><span class="meta-label">Ingredients:</span> {ing_count}</div>
     <div class="meta-item"><span class="meta-label">Steps:</span> {step_count}</div>
+    <div class="meta-item"><span class="meta-label">Creator ID:</span> {recipe['user_id']}</div>
 </div>
 """, unsafe_allow_html=True)
 
