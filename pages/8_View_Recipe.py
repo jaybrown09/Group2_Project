@@ -28,6 +28,9 @@ if not recipe:
     if st.button("🏠: Go to Dashboard"): st.switch_page("pages/1_Dashboard.py")
     st.stop()
 
+creator = db.get_username(recipe['user_id'])
+creator_name = creator['username'] if creator else f"User {recipe['user_id']}"
+
 # Get structured ingredients
 structured_ingredients = db.get_recipe_ingredients(recipe['recipe_id'])
 
@@ -71,10 +74,9 @@ step_count = len([i for i in recipe['instructions'].split('\n') if i.strip()])
 
 st.markdown(f"""
 <div class="metadata-bar">
-    <div class="meta-item"><span class="meta-label">Created:</span> {created}</div>
+    <div class="meta-item"><span class="meta-label">Created by:</span> {creator_name}</div>
     <div class="meta-item"><span class="meta-label">Ingredients:</span> {ing_count}</div>
     <div class="meta-item"><span class="meta-label">Steps:</span> {step_count}</div>
-    <div class="meta-item"><span class="meta-label">Creator ID:</span> {recipe['user_id']}</div>
 </div>
 """, unsafe_allow_html=True)
 
