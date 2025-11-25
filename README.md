@@ -53,4 +53,8 @@ Group2_Project/
 
 ## Group Members
 - Jay Brown
+- Aidan Blackwell
+- Brayden Rogers
+- Thomas-Luke Waddell
+- Christian Stuart
 
