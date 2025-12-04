@@ -104,7 +104,6 @@ st.markdown("---")
 
 # Ingredients Section
 st.markdown('<h3 class="section-header">🥦 Ingredients</h3>', unsafe_allow_html=True)
-st.caption("Edit ingredients with quantity and unit for better organization and unit conversion support")
 
 # Add ingredient form
 with st.expander("➕ Add New Ingredient", expanded=False):
@@ -122,7 +121,7 @@ with st.expander("➕ Add New Ingredient", expanded=False):
         unit_options = [
             "", "cups", "tbsp", "tsp", "oz", "lbs", "g", "kg", 
             "ml", "l", "gallon", "quart", "pint", "fl oz",
-            "count", "dozen", "pinch", "dash", "clove", "slice", "piece"
+            "count", "dozen", "whole", "pinch", "dash", "clove", "slice", "piece"
         ]
         ing_unit = st.selectbox(
             "Unit",
